@@ -15659,6 +15659,187 @@ X-Frame-Options: DENY
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The settings in REST framework are namespaced into a single dictionary setting named <code>REST_FRAMEWORK</code></p>
+<p>Go to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> and click on the hyperlinks to navigate around.</p>
+<h2 id="ViewSets-and-Routers">ViewSets and Routers<a class="anchor-link" href="#ViewSets-and-Routers">&#182;</a></h2><p>REST includes an absraction for <code>ViewSets</code> which allows us to concentrate on modeling the state and interactions of the API and lets URL construction happen automatically based on common conventions.</p>
+<p><code>ViewSet</code> classes are almost the same as <code>View</code> classes, but they have operations such as <code>read</code> or <code>update</code> instead of <code>get</code> or <code>put</code>.</p>
+<p><code>ViewSet</code> classes are only bound to a set of method handlers at the last moment, when it's instantiated into a set of views, usually by using a <code>Router</code> class which handles the cmplexities of defining the URL conf for you.</p>
+<h3 id="Refactoring-to-use-ViewSets">Refactoring to use ViewSets<a class="anchor-link" href="#Refactoring-to-use-ViewSets">&#182;</a></h3><p>Let's refactor <code>UserList</code> and <code>UserDetail</code> views into a single <code>UserViewSet</code>.  We'll replace them with a single class in <code>snippets/views.py</code>:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+
+<span class="k">class</span> <span class="nc">UserViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ReadOnlyModelViewSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This viewset automatically provides `list` and `detail` actions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>ReadOnlyModelViewSet</code> automatically provides default 'read-only' operations.  <code>queryset</code> and <code>serial_class</code> attributes don't need to have the same information in two classes now.  We can replace <code>SnippetList</code>, <code>SnippetDetail</code>, and <code>SnippetHighlight</code> with a single class as well:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">action</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="k">class</span> <span class="nc">SnippetViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This viewset automatically provides `list`, `create`, `retrieve`,</span>
+<span class="sd">    `update` and `destroy` actions.</span>
+
+<span class="sd">    Additionally we also provide an extra `highlight` action.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Snippet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SnippetSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticatedOrReadOnly</span><span class="p">,</span>
+                          <span class="n">IsOwnerOrReadOnly</span><span class="p">]</span>
+
+    <span class="nd">@action</span><span class="p">(</span><span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">renderer_classes</span><span class="o">=</span><span class="p">[</span><span class="n">renderers</span><span class="o">.</span><span class="n">StaticHTMLRenderer</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">highlight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">snippet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">snippet</span><span class="o">.</span><span class="n">highlighted</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We used <code>ModelViewSet</code> to get the complete set of default read and write operations.</p>
+<p>We use the <code>@action</code> decorator to respond to <code>GET</code> requests by default.  If we wanted an action that responded to <code>POST</code> requests, we could use the <code>methods</code> argument.</p>
+<p>URLs for custom actions depend on the method names themselves.  f you want to change the way the URL should be constructed, you can include <code>url_path</code> as a decorator keyword argument.</p>
+<h3 id="Binding-ViewSets-to-URLs-explicitely">Binding ViewSets to URLs explicitely<a class="anchor-link" href="#Binding-ViewSets-to-URLs-explicitely">&#182;</a></h3><p>Handler methods only get bound to actions when we define the URLConf.  If we want to see what's going on under the hood, we can explictely create a set of views from our ViewSets.</p>
+<p>Edit <code>snippets/urls.py</code> to bind our <code>ViewSet</code> classes into a set of concrete views:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">snippets.views</span> <span class="kn">import</span> <span class="n">SnippetViewSet</span><span class="p">,</span> <span class="n">UserViewSet</span><span class="p">,</span> <span class="n">api_root</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">renderers</span>
+
+<span class="n">snippet_list</span> <span class="o">=</span> <span class="n">SnippetViewSet</span><span class="o">.</span><span class="n">as_view</span><span class="p">({</span>
+    <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;post&#39;</span><span class="p">:</span> <span class="s1">&#39;create&#39;</span>
+<span class="p">})</span>
+<span class="n">snippet_detail</span> <span class="o">=</span> <span class="n">SnippetViewSet</span><span class="o">.</span><span class="n">as_view</span><span class="p">({</span>
+    <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="s1">&#39;retrieve&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;put&#39;</span><span class="p">:</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;patch&#39;</span><span class="p">:</span> <span class="s1">&#39;partial_update&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delete&#39;</span><span class="p">:</span> <span class="s1">&#39;destroy&#39;</span>
+<span class="p">})</span>
+<span class="n">snippet_highlight</span> <span class="o">=</span> <span class="n">SnippetViewSet</span><span class="o">.</span><span class="n">as_view</span><span class="p">({</span>
+    <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="s1">&#39;highlight&#39;</span>
+<span class="p">},</span> <span class="n">renderer_classes</span><span class="o">=</span><span class="p">[</span><span class="n">renderers</span><span class="o">.</span><span class="n">StaticHTMLRenderer</span><span class="p">])</span>
+<span class="n">user_list</span> <span class="o">=</span> <span class="n">UserViewSet</span><span class="o">.</span><span class="n">as_view</span><span class="p">({</span>
+    <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+<span class="p">})</span>
+<span class="n">user_detail</span> <span class="o">=</span> <span class="n">UserViewSet</span><span class="o">.</span><span class="n">as_view</span><span class="p">({</span>
+    <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="s1">&#39;retrieve&#39;</span>
+<span class="p">})</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We create multiple views from each <code>ViewSet</code> class by binding the http methods to the required action for each view.  Once the're bound, we can register the views with the URLConf in <code>snippets/urls.py</code>:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">format_suffix_patterns</span><span class="p">([</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">api_root</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;snippets/&#39;</span><span class="p">,</span> <span class="n">snippet_list</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;snippet-list&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;snippets/&lt;int:pk&gt;/&#39;</span><span class="p">,</span> <span class="n">snippet_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;snippet-detail&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;snippets/&lt;int:pk&gt;/highlight/&#39;</span><span class="p">,</span> <span class="n">snippet_highlight</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;snippet-highlight&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;users/&#39;</span><span class="p">,</span> <span class="n">user_list</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;user-list&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;users/&lt;int:pk&gt;/&#39;</span><span class="p">,</span> <span class="n">user_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;user-detail&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Using-routers">Using routers<a class="anchor-link" href="#Using-routers">&#182;</a></h3><p>Since we're using <code>ViewSet</code> classes rather than <code>View</code> classes, we don't need to change the URLConf ourselves.  These can be handled automatically using a <code>Router</code> class.  Once we register the appropriate view sets with a router, it will do the rest.  We can modify the <code>snippets/urls.py</code> file like so:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">rest_framework.routers</span> <span class="kn">import</span> <span class="n">DefaultRouter</span>
+<span class="kn">from</span> <span class="nn">snippets</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="c1"># Create a router and register our viewsets with it.</span>
+<span class="n">router</span> <span class="o">=</span> <span class="n">DefaultRouter</span><span class="p">()</span>
+<span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;snippets&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">SnippetViewSet</span><span class="p">)</span>
+<span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">UserViewSet</span><span class="p">)</span>
+
+<span class="c1"># The API URLs are now determined automatically by the router.</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+<span class="p">]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Registering viewsets with a router is similar to providing a urlpattern.  We used the URL preix for the views, and the viewset itself as arguments.</p>
+<p><code>DefaultRouter</code> automatically creates the API root view for us, so we can delete the api_root method from <code>snippets/views.py</code></p>
+<p>Check it out! <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
+<h3 id="Tradoffs-between-views-&amp;-viewsets">Tradoffs between views &amp; viewsets<a class="anchor-link" href="#Tradoffs-between-views-&amp;-viewsets">&#182;</a></h3><p>Viewsets are a really useful abstraction, and ensure that the URL conventions are consistent across your API, cuts down on the amount of code you need to write, and allows you to concentrate on the interactions and representations the API provides rather then the specifics in the URLConf.</p>
+<p>It's not always the right approach to take - there are tradeoffs to consider.  Using viewsets is less explicit than building each view individually.</p>
 
 </div>
 </div>
