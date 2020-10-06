@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>viewsets</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>activities</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,8 +14259,69 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><p>Goals</p>
+<h1 id="Solvestack">Solvestack<a class="anchor-link" href="#Solvestack">&#182;</a></h1><p>Show code for existing solvestack backend, do this throughout for concepts in the lecture that are reflected in the code</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Serializer-review">Serializer review<a class="anchor-link" href="#Serializer-review">&#182;</a></h1><p>We use serialization to convert our data to JSON.</p>
 <ul>
+<li>show <code>snippets/serializers.py</code> code</li>
+<li>Explain how this is similar to Django's forms</li>
+</ul>
+<h2 id="Activities:">Activities:<a class="anchor-link" href="#Activities:">&#182;</a></h2><ul>
+<li>look at serializers class of rest_framework<h2 id="----field-types">  - field types<a class="anchor-link" href="#----field-types">&#182;</a></h2></li>
+<li>understand imports of snippets.models (<code>Snippet</code>, <code>LANGUAGE_CHOICES</code>, <code>STYLE_CHOICES</code>)</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">snippets.models</span> <span class="kn">import</span> <span class="n">Snippet</span><span class="p">,</span> <span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">STYLE_CHOICES</span>
+
+
+<span class="k">class</span> <span class="nc">SnippetSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;base_template&#39;</span><span class="p">:</span> <span class="s1">&#39;textarea.html&#39;</span><span class="p">})</span>
+    <span class="n">linenos</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">language</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">STYLE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;friendly&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create and return a new `Snippet` instance, given the validated data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Snippet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">validated_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update and return an existing `Snippet` instance, given the validated data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;linenos&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">instance</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>Understand what features mixin classes provide</li>
 <li>Understand how classes can be refactored with already mixed-in generic class-based views</li>
 </ul>
@@ -14330,13 +14391,14 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Hyperlinked-APIs">Hyperlinked APIs<a class="anchor-link" href="#Hyperlinked-APIs">&#182;</a></h1><p>Goals</p>
-<ul>
+<h1 id="Hyperlinked-APIs">Hyperlinked APIs<a class="anchor-link" href="#Hyperlinked-APIs">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand differences between <code>ModelSerializer</code> and <code>HyperLinkedModelSerializer</code><ul>
 <li>Tie this to previous lessons on serializers (review videos)</li>
 </ul>
 </li>
 <li>Show other relationship styles</li>
+</ul>
+<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>Implement a different relationship style</li>
 </ul>
 <p>from <code>snippets/seralizers.py</code> with <code>HyperLinkedModelSeralizer</code>:</p>
@@ -14398,10 +14460,11 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Pagination">Pagination<a class="anchor-link" href="#Pagination">&#182;</a></h1><p>Goals</p>
-<ul>
+<h1 id="Pagination">Pagination<a class="anchor-link" href="#Pagination">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand the REST_FRAMEWORK dictionary in <code>tutorial/settings.py</code></li>
 <li>Understand how PageNumberPagination class works</li>
+</ul>
+<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>Look at other pagination classes and show how they work</li>
 </ul>
 
@@ -14426,8 +14489,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Viewset-Exercises">Viewset Exercises<a class="anchor-link" href="#Viewset-Exercises">&#182;</a></h1><p>From the tutorial, make sure you understand</p>
-<ul>
+<h1 id="Viewset-Exercises">Viewset Exercises<a class="anchor-link" href="#Viewset-Exercises">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>import statements (<code>viewsets</code>, <code>action</code>, <code>Response</code>)</li>
 <li>understand what actions <code>ReadOnlyModelViewSet</code> provides</li>
 <li>understand what actions <code>ModelViewSet</code> provides</li>
@@ -14435,6 +14497,8 @@ a.anchor-link {
 <li>show code needed for manual urls</li>
 <li>understand how routers work to handle URLConf with router with DefaultRouter().urls</li>
 <li>show other router classes</li>
+</ul>
+<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>create a new viewset with this information that adds to the tutorial code
 From <code>snippets/views.py</code>:</li>
 </ul>
