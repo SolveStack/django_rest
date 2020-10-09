@@ -14259,7 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h1><p>Today we'll go over many of the backend concepts that power the Solvestack's backend code.  Since it uses the Django REST framework, we'll illustrate examples from tutorials from their site along with our Solvestack code.</p>
+<h1 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h1><p>Today we'll go over many of the concepts that power the Solvestack's backend code.  Since it uses the Django REST framework, we'll illustrate examples from tutorials from their site along with our Solvestack code.</p>
 <h2 id="Our-goals">Our goals<a class="anchor-link" href="#Our-goals">&#182;</a></h2><ol>
 <li>Review terms</li>
 <li>Review serializers</li>
@@ -14273,7 +14273,8 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="General-terms-review">General terms review<a class="anchor-link" href="#General-terms-review">&#182;</a></h1><p><strong>CLI</strong></p>
+<h1 id="General-terms-review">General terms review<a class="anchor-link" href="#General-terms-review">&#182;</a></h1><p><strong>Pull up the solvestack admin page.  As we work through these, type the answers from the mentees into the glossary terms.</strong></p>
+<p><strong>CLI</strong></p>
 <p>Stands for command line interface - programs that are run from your terminal</p>
 <p>Examples: brew, pip3, manage.py, ls, pwd</p>
 <p><strong>IDE</strong></p>
@@ -14369,55 +14370,29 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <li>Explain how this is similar to Django's forms</li>
 <li>Show serialization in solvestack at <code>glossary/serializers.py</code></li>
 </ul>
-<h2 id="Activities:">Activities:<a class="anchor-link" href="#Activities:">&#182;</a></h2><ul>
-<li>look at serializers class of rest_framework<h2 id="----field-types">  - field types<a class="anchor-link" href="#----field-types">&#182;</a></h2></li>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
+<li>look at serializers class of rest_framework<ul>
+<li>field types, serializers.Serializer</li>
+</ul>
+</li>
 <li>understand imports of snippets.models (<code>Snippet</code>, <code>LANGUAGE_CHOICES</code>, <code>STYLE_CHOICES</code>)</li>
+</ul>
+<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
+<li>Run some shell commands on tutorial db</li>
+<li>Run some shell commands on solvestack db</li>
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># tutorial serializer</span>
-<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
-<span class="kn">from</span> <span class="nn">snippets.models</span> <span class="kn">import</span> <span class="n">Snippet</span><span class="p">,</span> <span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">STYLE_CHOICES</span>
-
-
-<span class="k">class</span> <span class="nc">SnippetSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">code</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;base_template&#39;</span><span class="p">:</span> <span class="s1">&#39;textarea.html&#39;</span><span class="p">})</span>
-    <span class="n">linenos</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">language</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
-    <span class="n">style</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">STYLE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;friendly&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create and return a new `Snippet` instance, given the validated data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Snippet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">validated_data</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update and return an existing `Snippet` instance, given the validated data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;linenos&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">instance</span>
-</pre></div>
-
-     </div>
 </div>
-</div>
-</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Tutorial-serializer-demo">Tutorial serializer demo<a class="anchor-link" href="#Tutorial-serializer-demo">&#182;</a></h3><ul>
+<li>Run tutorial server with <code>python manage.py runserver</code></li>
+<li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the snippets we have loaded</li>
+<li>Open Postman to make API requests and show serialization of data we just looked at</li>
+</ul>
 
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
@@ -14445,11 +14420,37 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
+<h3 id="Solvestack-serializer-demo">Solvestack serializer demo<a class="anchor-link" href="#Solvestack-serializer-demo">&#182;</a></h3><ul>
+<li>Run solvestack server with <code>python manage.py runserver</code></li>
+<li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the terms we have loaded</li>
+<li>Open Postman to make API requests and show serialization of data we just looked at: run a GET on <code>http://127.0.0.1:8000/terms/</code></li>
+</ul>
+<p>Output from initial JSON fixture import:</p>
+
+<pre><code>[
+    {
+        "id": "6LWr7wMsmk6rdgvoA9W3dG",
+        "name": "frontend",
+        "definition": "presentation layer"
+    },
+    {
+        "id": "8JdHcDARgHG9H6CHJEYCwD",
+        "name": "backend",
+        "definition": "business logic and database access layer"
+    }
+]</code></pre>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand what features mixin classes provide</li>
 <li>Understand how classes can be refactored with already mixed-in generic class-based views</li>
 </ul>
-<p>Mixins added classes in <code>snippets/views.py</code>:</p>
+<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
+<li>Mixins added classes in <code>snippets/views.py</code>:</li>
+</ul>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14515,37 +14516,22 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Solvestack code from <code>glossary/views.py</code>:</p>
+<p>Solvestack code from <code>glossary/views.py</code> uses a viewset, which we'll talk about later.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
-
-<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">TermSerializer</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Term</span>
-<span class="kn">from</span> <span class="nn">.filters</span> <span class="kn">import</span> <span class="n">TermsFilter</span>
-
-
-<span class="k">class</span> <span class="nc">TermViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
-    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Term</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">TermSerializer</span>
-    <span class="n">filter_class</span> <span class="o">=</span> <span class="n">TermsFilter</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Hyperlinked-APIs">Hyperlinked APIs<a class="anchor-link" href="#Hyperlinked-APIs">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
+<h1 id="More-about-serialization-and-relationships">More about serialization and relationships<a class="anchor-link" href="#More-about-serialization-and-relationships">&#182;</a></h1><p>Django REST supports many different types of relationships between data.  Here are some examples:</p>
+<ul>
+<li>Using primary keys</li>
+<li>Using hyperlinking between entities</li>
+<li>Using a unique identifying slug field on the related entity</li>
+<li>Using the default string representation of the related entity</li>
+<li>Nesting the related entity inside the parent representation</li>
+<li>Some other custom representation</li>
+</ul>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand differences between <code>ModelSerializer</code> and <code>HyperLinkedModelSerializer</code><ul>
 <li>Tie this to previous lessons on serializers (review videos)</li>
 </ul>
@@ -14555,7 +14541,6 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>Implement a different relationship style</li>
 </ul>
-<p>from <code>snippets/seralizers.py</code> with <code>HyperLinkedModelSeralizer</code>:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14564,22 +14549,36 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SnippetSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
-    <span class="n">owner</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;owner.username&#39;</span><span class="p">)</span>
-    <span class="n">highlight</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedIdentityField</span><span class="p">(</span><span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;snippet-highlight&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
-
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">Snippet</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;linenos&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># tutorial serializer w/o models</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">snippets.models</span> <span class="kn">import</span> <span class="n">Snippet</span><span class="p">,</span> <span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">STYLE_CHOICES</span>
 
 
-<span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
-    <span class="n">snippets</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedRelatedField</span><span class="p">(</span><span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;snippet-detail&#39;</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">SnippetSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;base_template&#39;</span><span class="p">:</span> <span class="s1">&#39;textarea.html&#39;</span><span class="p">})</span>
+    <span class="n">linenos</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">language</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">LANGUAGE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">STYLE_CHOICES</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;friendly&#39;</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;snippets&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create and return a new `Snippet` instance, given the validated data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Snippet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">validated_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update and return an existing `Snippet` instance, given the validated data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;linenos&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">linenos</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">instance</span>
 </pre></div>
 
      </div>
@@ -14614,6 +14613,46 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>from <code>snippets/serializers.py</code> with <code>HyperLinkedModelSeralizer</code>:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SnippetSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;owner.username&#39;</span><span class="p">)</span>
+    <span class="n">highlight</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedIdentityField</span><span class="p">(</span><span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;snippet-highlight&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Snippet</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;highlight&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;linenos&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
+    <span class="n">snippets</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedRelatedField</span><span class="p">(</span><span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;snippet-detail&#39;</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;snippets&#39;</span><span class="p">]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>ModelSerializer</code> classes are a shortcut for creating serializer classes:</p>
+<ul>
+<li>automatically determined set of fields</li>
+<li>simple <code>create()</code> and <code>update()</code> methods are implemented for you</li>
+</ul>
 <p>Solvestack's <code>glossary/serializers.py</code> with <code>ModelSerializer</code>:</p>
 
 </div>
