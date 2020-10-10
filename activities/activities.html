@@ -14263,6 +14263,7 @@ a.anchor-link {
 <h2 id="Our-goals">Our goals<a class="anchor-link" href="#Our-goals">&#182;</a></h2><ol>
 <li>Review terms</li>
 <li>Review serializers</li>
+<li>Explain differences between Django and Django REST</li>
 <li>Examine class-based views using Django REST</li>
 <li>Examine hyperlinked APIs and other relationship styles</li>
 <li>Show different ways pagination can be used</li>
@@ -14444,6 +14445,55 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Django-vs-Django-REST">Django vs Django REST<a class="anchor-link" href="#Django-vs-Django-REST">&#182;</a></h1><p>What is the difference betweeen Django and Django REST?</p>
+<ul>
+<li>Django is used as the base for our backend code.  It provides the structure needed for the backend with supporting files such as <code>views.py</code>, <code>urls.py</code>, and <code>models.py</code></li>
+<li>Django REST adds useful abstractions that speed up things like authentication, serializing/deserializing, routing, etc</li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Setting-up-our-workspace">Setting up our workspace<a class="anchor-link" href="#Setting-up-our-workspace">&#182;</a></h1><h2 id="Pulling-down-code-from-github">Pulling down code from github<a class="anchor-link" href="#Pulling-down-code-from-github">&#182;</a></h2><ul>
+<li>Create a new folder to store today's code.  Navigate to this folder through the terminal with <code>cd &lt;folder path&gt;</code></li>
+<li>We're going to look at two code bases:<ol>
+<li>The tutorials starting at <a href="https://www.django-rest-framework.org/tutorial/quickstart/">https://www.django-rest-framework.org/tutorial/quickstart/</a> </li>
+<li>Solvestack backend code at <a href="https://github.com/SolveStack/solvestack_backend">https://github.com/SolveStack/solvestack_backend</a></li>
+</ol>
+</li>
+<li><p>To pull down both of these, you must have git installed.</p>
+<ol>
+<li>In the new folder you created, type <code>git clone https://github.com/SolveStack/solvestack_backend</code></li>
+<li>When that finishes, get the second code repo with <code>git clone https://github.com/SolveStack/django_rest</code></li>
+</ol>
+</li>
+<li><p>You will now have two new folders in the folder you created - <code>django_rest</code> and <code>solvestack_backend</code></p>
+</li>
+<li><p>The notes we are currently viewing are in <code>django_rest/activities/activities.html</code></p>
+</li>
+</ul>
+<h2 id="Set-up-virtual-environment">Set up virtual environment<a class="anchor-link" href="#Set-up-virtual-environment">&#182;</a></h2><p>Now we need to make sure we have the frameworks needed in our Python virtual environment</p>
+<ul>
+<li>go to the root of the folder you created in the terminal, where both <code>django_rest</code> and <code>solvestack_backend</code> folders are visible</li>
+<li>type <code>mkdir env</code></li>
+<li>type <code>python3 -m venv &lt;folder path&gt;/env</code></li>
+<li>type <code>source env/bin/activate</code> (Mac/Linux) or <code>env/Scripts/activate</code> (Windows) to activate the environment</li>
+<li>type <code>cd solvestack_backend</code> and then:
+<pre><code>pip3 install -r dev-requirements.txt
+pip3 install -r requirements.txt</code></pre>
+</li>
+</ul>
+<h2 id="Loading-data-into-solvestack-backend">Loading data into solvestack backend<a class="anchor-link" href="#Loading-data-into-solvestack-backend">&#182;</a></h2><p>To do the initial data load and setup, our solvestack code reads in a JSON file.  We need to get that going to give us a solid base to build on.</p>
+
+<pre><code>python3 manage.py migrate
+python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
+<h2 id="Running-code">Running code<a class="anchor-link" href="#Running-code">&#182;</a></h2><p><code>python3 manage.py runserver</code></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand what features mixin classes provide</li>
 <li>Understand how classes can be refactored with already mixed-in generic class-based views</li>
@@ -14485,6 +14535,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>REST framework provides a set of already mixed-in generic views that we can use to trim down <code>views.py</code> more.</p>
 <p>Using already mixed-in generic class-based view from <code>snippets/views.py</code>:</p>
 
 </div>
@@ -14516,7 +14567,9 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Solvestack code from <code>glossary/views.py</code> uses a viewset, which we'll talk about later.</p>
+<p>Much less code is needed with already mixed-in generic class-based views when compared to creating a class and adding in mixins.</p>
+<blockquote><p>Note: Solvestack code from <code>glossary/views.py</code> uses a viewset, which we'll talk about later.</p>
+</blockquote>
 
 </div>
 </div>
@@ -14532,10 +14585,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <li>Some other custom representation</li>
 </ul>
 <h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
-<li>Understand differences between <code>ModelSerializer</code> and <code>HyperLinkedModelSerializer</code><ul>
-<li>Tie this to previous lessons on serializers (review videos)</li>
-</ul>
-</li>
+<li>Understand differences between <code>ModelSerializer</code> and <code>HyperLinkedModelSerializer</code></li>
 <li>Show other relationship styles</li>
 </ul>
 <h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
@@ -14746,7 +14796,8 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Viewset-Exercises">Viewset Exercises<a class="anchor-link" href="#Viewset-Exercises">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
+<h1 id="Viewset-Exercises">Viewset Exercises<a class="anchor-link" href="#Viewset-Exercises">&#182;</a></h1><p><a href="https://www.django-rest-framework.org/api-guide/viewsets/">https://www.django-rest-framework.org/api-guide/viewsets/</a></p>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>import statements (<code>viewsets</code>, <code>action</code>, <code>Response</code>)</li>
 <li>understand what actions <code>ReadOnlyModelViewSet</code> provides</li>
 <li>understand what actions <code>ModelViewSet</code> provides</li>
@@ -14905,6 +14956,20 @@ From <code>snippets/views.py</code>:</li>
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Other-viewset-types">Other viewset types<a class="anchor-link" href="#Other-viewset-types">&#182;</a></h2><ul>
+<li>GenericViewSet</li>
+<li>ModelViewSet</li>
+<li>ReadOnlyModelViewSet</li>
+</ul>
+<blockquote><p>Mixins can also be used to create custom viewset classes, using existing viewsets as a base</p>
+</blockquote>
+<h2 id="Tradoffs-between-views-&amp;-viewsets">Tradoffs between views &amp; viewsets<a class="anchor-link" href="#Tradoffs-between-views-&amp;-viewsets">&#182;</a></h2><p>Viewsets are a really useful abstraction, and ensure that the URL conventions are consistent across your API, cuts down on the amount of code you need to write, and allows you to concentrate on the interactions and representations the API provides rather then the specifics in the URLConf.</p>
+<p>It's not always the right approach to take - there are tradeoffs to consider.  Using viewsets is less explicit than building each view individually.</p>
+
+</div>
 </div>
 </body>
 
