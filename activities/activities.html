@@ -14341,7 +14341,7 @@ Hostsfile</p>
 <h1 id="Django-REST-terms-review">Django REST terms review<a class="anchor-link" href="#Django-REST-terms-review">&#182;</a></h1><p><strong>Url resources endpoint</strong></p>
 <p>Defines the viewset used and the endpoint used</p>
 <p><strong>Viewset</strong></p>
-<p>Defines our filters for the resources and all the HTTP actions we want to use (“GET”, “POST”, “PUT”, “PATCH”, and “DELETE”</p>
+<p>Defines our filters for the resources and all the HTTP actions we want to use (“GET”, “POST”, “PUT”, “PATCH”, and “DELETE”)</p>
 <p>Gives response codes and JSON from the serializer into the response body.</p>
 <p><strong>Serializer</strong></p>
 <p>Example for POST action:
@@ -14425,7 +14425,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the terms we have loaded</li>
 <li>Open Postman to make API requests and show serialization of data we just looked at: run a GET on <code>http://127.0.0.1:8000/terms/</code></li>
 </ul>
-<p>Output from initial JSON fixture import:</p>
+<p>Sample output from initial JSON fixture import:</p>
 
 <pre><code>[
     {
@@ -14682,12 +14682,24 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's try some of the other relationships and see how they work!  Here are some choices:</p>
+<ul>
+<li><a href="https://www.django-rest-framework.org/api-guide/serializers/#listserializer">ListSerializer</a></li>
+<li><a href="https://www.django-rest-framework.org/api-guide/serializers/#baseserializer">BaseSerializer</a></li>
+<li><a href="https://www.django-rest-framework.org/api-guide/serializers/#advanced-serializer-usage">Advanced Usage</a></li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Pagination">Pagination<a class="anchor-link" href="#Pagination">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand the REST_FRAMEWORK dictionary in <code>tutorial/settings.py</code></li>
 <li>Understand how PageNumberPagination class works</li>
 </ul>
 <h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
 <li>Look at other pagination classes and show how they work</li>
+<li>Implement pagination in the newly-grown terms list</li>
 </ul>
 <p>Tutorial's <code>settings.py</code>:</p>
 
@@ -14854,6 +14866,12 @@ From <code>snippets/views.py</code>:</li>
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Note <code>ModelViewSet</code> is used, with <code>TermsFilter</code> and <code>TermSerializer</code></p>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
