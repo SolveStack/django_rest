@@ -14269,6 +14269,8 @@ a.anchor-link {
 <li>Show different ways pagination can be used</li>
 <li>Examine view sets and create new ones</li>
 </ol>
+<h2 id="Helpful-links">Helpful links<a class="anchor-link" href="#Helpful-links">&#182;</a></h2><p><a href="https://github.com/SolveStack/solvestack_backend">https://github.com/SolveStack/solvestack_backend</a></p>
+<p><a href="https://www.django-rest-framework.org">https://www.django-rest-framework.org</a></p>
 
 </div>
 </div>
@@ -14389,7 +14391,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Tutorial-serializer-demo">Tutorial serializer demo<a class="anchor-link" href="#Tutorial-serializer-demo">&#182;</a></h3><ul>
 <li>Run tutorial server with <code>python manage.py runserver</code></li>
-<li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the snippets we have loaded</li>
+<li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the snippets that have been loaded</li>
 <li>Open Postman to make API requests and show serialization of data we just looked at</li>
 </ul>
 
@@ -14494,7 +14496,123 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
+<h2 id="Folder-structure">Folder structure<a class="anchor-link" href="#Folder-structure">&#182;</a></h2>
+<pre><code>.
+├── django_rest
+│   ├── README.md
+│   ├── activities
+│   │   ├── activities.html
+│   │   └── activities.ipynb
+│   ├── notes.html
+│   ├── notes.ipynb
+│   ├── quickstart
+│   │   ├── manage.py
+│   │   └── tutorial
+│   │       ├── __init__.py
+│   │       ├── asgi.py
+│   │       ├── quickstart
+│   │       │   ├── __init__.py
+│   │       │   ├── admin.py
+│   │       │   ├── apps.py
+│   │       │   ├── migrations
+│   │       │   │   └── __init__.py
+│   │       │   ├── models.py
+│   │       │   ├── serializers.py
+│   │       │   ├── tests.py
+│   │       │   └── views.py
+│   │       ├── settings.py
+│   │       ├── urls.py
+│   │       └── wsgi.py
+│   └── tutorial
+│       ├── manage.py
+│       ├── snippets
+│       │   ├── __init__.py
+│       │   ├── admin.py
+│       │   ├── apps.py
+│       │   ├── migrations
+│       │   │   ├── 0001_initial.py
+│       │   │   └── __init__.py
+│       │   ├── models.py
+│       │   ├── permissions.py
+│       │   ├── serializers.py
+│       │   ├── tests.py
+│       │   ├── urls.py
+│       │   └── views.py
+│       └── tutorial
+│           ├── __init__.py
+│           ├── asgi.py
+│           ├── settings.py
+│           ├── urls.py
+│           └── wsgi.py
+└── solvestack_backend
+    ├── README.md
+    ├── db.sqlite3
+    ├── dev-requirements.txt
+    ├── manage.py
+    ├── requirements.txt
+    └── solvestack
+        ├── __init__.py
+        ├── __pycache__
+        │   ├── __init__.cpython-38.pyc
+        │   ├── settings.cpython-38.pyc
+        │   ├── urls.cpython-38.pyc
+        │   └── wsgi.cpython-38.pyc
+        ├── asgi.py
+        ├── fixtures
+        │   └── glossary.json
+        ├── glossary
+        │   ├── __init__.py
+        │   ├── __pycache__
+        │   │   ├── __init__.cpython-38.pyc
+        │   │   ├── admin.cpython-38.pyc
+        │   │   ├── filters.cpython-38.pyc
+        │   │   ├── models.cpython-38.pyc
+        │   │   ├── serializers.cpython-38.pyc
+        │   │   └── views.cpython-38.pyc
+        │   ├── admin.py
+        │   ├── apps.py
+        │   ├── filters.py
+        │   ├── migrations
+        │   │   ├── 0001_initial.py
+        │   │   ├── __init__.py
+        │   │   └── __pycache__
+        │   │       ├── 0001_initial.cpython-38.pyc
+        │   │       ├── __init__.cpython-37.pyc
+        │   │       └── __init__.cpython-38.pyc
+        │   ├── models.py
+        │   ├── serializers.py
+        │   ├── tests.py
+        │   └── views.py
+        ├── settings.py
+        ├── urls.py
+        └── wsgi.py</code></pre>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Demo-of-both-projects">Demo of both projects<a class="anchor-link" href="#Demo-of-both-projects">&#182;</a></h1><ul>
+<li>Show tutorial's hyperlinked interface through admin page</li>
+<li>Show solvestack with admin page added</li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Django-view-review">Django view review<a class="anchor-link" href="#Django-view-review">&#182;</a></h1><p>Before we dig into some neat things we can do with views in Django REST, let's review Django views real quick!</p>
+<ul>
+<li>A Django view is just a Python function that receives a web request and returns a web response</li>
+<li>All the logic to return the desired response goes inside the view</li>
+<li>A general use case in Django would be:<ol>
+<li>Create application views</li>
+<li>Define a URL pattern for each view</li>
+<li>Create HTML templates to render the data generated by the views</li>
+</ol>
+</li>
+</ul>
+<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><p>Class-based views are great for grouping common behaviors.  They can be re-used easily within our project, and enforce a good programming practice known as <a href="https://en.wikipedia.org/wiki/Don&#39;t_repeat_yourself">DRY</a>.  These are provided with Django, however Django REST extends these with additional features, such as mixin classes.</p>
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand what features mixin classes provide</li>
 <li>Understand how classes can be refactored with already mixed-in generic class-based views</li>
 </ul>
@@ -14807,8 +14925,7 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 <li>show other router classes</li>
 </ul>
 <h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
-<li>create a new viewset with this information that adds to the tutorial code
-From <code>snippets/views.py</code>:</li>
+<li>create a new viewset within solvestack code (on a separate branch!), and add to admin page so we can put data into it</li>
 </ul>
 
 </div>
