@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>activities</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>activities_mentees</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14276,113 +14276,57 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="General-terms-review">General terms review<a class="anchor-link" href="#General-terms-review">&#182;</a></h1><p><strong>Pull up the solvestack admin page.  As we work through these, type the answers from the mentees into the glossary terms.</strong></p>
-<p><strong>CLI</strong></p>
-<p>Stands for command line interface - programs that are run from your terminal</p>
-<p>Examples: brew, pip3, manage.py, ls, pwd</p>
+<h1 id="General-terms-review">General terms review<a class="anchor-link" href="#General-terms-review">&#182;</a></h1><p><strong>CLI</strong></p>
 <p><strong>IDE</strong></p>
-<p>A place to view and edit your code</p>
-<p>Examples: Visual Studio Code, Atom, JetBrains (various language specific IDEs)</p>
 <p><strong>Library</strong></p>
-<p>A collection of modules</p>
 <p><strong>Module</strong></p>
-<p>methods and classes for a purpose that can be used by other code elsewhere</p>
-<p>Examples: shortuuid</p>
 <p><strong>Package</strong></p>
-<p>A neat wrapper for installation and easy calling of a library from other code elsewhere
-Package Manager
-A tool that easily installs packages for a project OR for your local machine</p>
-<p>Examples: pip, npm, npx, homebrew</p>
 <p><strong>Frontend/GUI/UI</strong></p>
-<p>The presentation layer of a given application - what the user sees. Or, GUI, stands for graphical user interface</p>
 <p><strong>Backend</strong></p>
-<p>The business logic layer that interacts with the database layer and serves the data to external clients</p>
 <p><strong>Request</strong></p>
-<p>Client sends this message to the web server to accomplish tasks.</p>
 <p><strong>Response</strong></p>
-<p>Web server gives this message to let the client know the result and the status of their task.</p>
 <p><strong>API</strong></p>
-<p>Stands for application programming interface. Fundamental way of interaction between two systems or two libraries, and more.</p>
 <p><strong>Framework</strong></p>
-<p>A collection of packages and tooling that make life easier when coding for a specific purpose</p>
-<p>Examples: React, Vue, Django, Django REST Framework</p>
 <p><strong>Database</strong></p>
-<p>Place to store all records and write records to in an organized and optimized way</p>
-<p>Examples: SQLite, MySQL, PostgreSQL, MongoDB</p>
 <p><strong>Web Server</strong></p>
-<p>The program used to broadcast our code on a given port and address.</p>
-<p>Example: localhost is the address of our machine, and 3000 is the default address for React and other frontends</p>
 <p><strong>Client</strong></p>
-<p>A program or API used to receive the data broadcasted by the web server</p>
-<p>Examples: a browser like Chrome/Mozilla/Safari, or Postman client, or a client in a given language like Python or Axios is a commonly used client in JS</p>
 <p><strong>Physical Server</strong></p>
-<p>The physical machine that runs the web server and can house a database and your files that contain your code.</p>
-<p>Examples: your laptop, a server in a datacenter</p>
 <p><strong>Frontend Component</strong></p>
-<p>A template to generate HTML that’s reusable</p>
 <p><strong>SQL</strong></p>
-<p>SQL is a standard language for storing, manipulating and retrieving data in relational databases.</p>
 <p><strong>IDE</strong></p>
-<p>Integrated Development Environment - a fancy name for a fancy code editor</p>
-<p>Examples: VSCode</p>
 <p><strong>Virtual Environment</strong></p>
-<p>An isolated location so that each project can have its own dependencies, regardless of what dependencies every other project has.</p>
 <p><strong>Protocol</strong></p>
-<p>Standard structure of network requests and responses on the web that the whole world has agreed upon</p>
-<p>Examples usually end in “protocol”:
-HTTP, HTTPS, RDP (Remote Desktop Protocol to get into a Windows Server), NTP (Network Time Protocol)</p>
 <p><strong>Contract</strong></p>
-<p>Specifications the developer makes for an API to adhere to in order to provide consistency for downstream stakeholders of the API.</p>
 <p><strong>Future</strong></p>
-<p>DNS
-Hostsfile</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Django-REST-terms-review">Django REST terms review<a class="anchor-link" href="#Django-REST-terms-review">&#182;</a></h1><p><strong>Url resources endpoint</strong></p>
-<p>Defines the viewset used and the endpoint used</p>
 <p><strong>Viewset</strong></p>
-<p>Defines our filters for the resources and all the HTTP actions we want to use (“GET”, “POST”, “PUT”, “PATCH”, and “DELETE”)</p>
-<p>Gives response codes and JSON from the serializer into the response body.</p>
 <p><strong>Serializer</strong></p>
-<p>Example for POST action:
-Deserializes our JSON input from our request body into the ORM equivalent for writing actions - and response serializes the newly created resource from our ORM back into JSON response.</p>
 <p><strong>ORM</strong></p>
-<p>Object Representation Model - Django’s way of interfacing (API) between the database and our Python code.</p>
-<p>Is used by both Django framework for server side rendering web development AND Django REST Framework libs</p>
 <p><strong>Manager / Queryset</strong></p>
-<p>Manages the objects of a model type and has handy ways to query the database or manipulate querysets and save them to the database. The manager is the standard queryset you start from before adding filters and exclusions, etc.</p>
-<p>Django starts you out with its standard manager but we can extend it to prefetch_related or select_related fields.</p>
 <p><strong>Model</strong></p>
-<p>Blueprint for Django objects that are able to be saved and loaded from the database.</p>
-<p>Generates migrations to create tables and define their columns for storage.</p>
 <p><strong>Migrations</strong></p>
-<p>Easy blueprints for manipulating the structure of the database and its tables</p>
 <p><strong>Primary Key</strong></p>
-<p>The main way to identify a given record or model</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Serializer-review">Serializer review<a class="anchor-link" href="#Serializer-review">&#182;</a></h1><p>We use serialization to convert our data to JSON.</p>
-<ul>
-<li>Show <code>snippets/serializers.py</code> code</li>
-<li>Explain how this is similar to Django's forms</li>
-<li>Show serialization in solvestack at <code>glossary/serializers.py</code></li>
-</ul>
+<h1 id="Serializer-review">Serializer review<a class="anchor-link" href="#Serializer-review">&#182;</a></h1><p>We use serialization to convert our data to JSON currently, but they have many uses.  From <a href="https://www.django-rest-framework.org/api-guide/serializers/">Django REST</a>:</p>
+<blockquote><p><em>"Serializers allow complex data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types. Serializers also provide deserialization, allowing parsed data to be converted back into complex types, after first validating the incoming data."</em></p>
+</blockquote>
 <h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
-<li>look at serializers class of rest_framework<ul>
+<li>Look at serializers class of rest_framework tutorial<ul>
+<li>Show <code>snippets/serializers.py</code> code</li>
 <li>field types, serializers.Serializer</li>
 </ul>
 </li>
-<li>understand imports of snippets.models (<code>Snippet</code>, <code>LANGUAGE_CHOICES</code>, <code>STYLE_CHOICES</code>)</li>
-</ul>
-<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
-<li>Run some shell commands on tutorial db</li>
-<li>Run some shell commands on solvestack db</li>
+<li>Understand imports of snippets.models (<code>Snippet</code>, <code>LANGUAGE_CHOICES</code>, <code>STYLE_CHOICES</code>)</li>
+<li>Show serialization in solvestack at <code>glossary/serializers.py</code></li>
 </ul>
 
 </div>
@@ -14391,10 +14335,18 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Tutorial-serializer-demo">Tutorial serializer demo<a class="anchor-link" href="#Tutorial-serializer-demo">&#182;</a></h3><ul>
 <li>Run tutorial server with <code>python manage.py runserver</code></li>
-<li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the snippets that have been loaded</li>
-<li>Open Postman to make API requests and show serialization of data we just looked at</li>
+<li>View the admin site <a href="http://127.0.0.1:8000/snippets/">here</a>, view the snippets that have been loaded</li>
+<li>Open Postman to make API requests and show serialization of data we just looked at - run a GET on <code>http://127.0.0.1:8000/snippets/</code><ul>
+<li>Note the <code>count</code>, <code>next</code>, <code>previous</code>, and <code>results</code> fields!  We'll talk about that later.</li>
+</ul>
+</li>
 </ul>
 
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Solvestack-serializer-demo">Solvestack serializer demo<a class="anchor-link" href="#Solvestack-serializer-demo">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -14423,7 +14375,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Solvestack-serializer-demo">Solvestack serializer demo<a class="anchor-link" href="#Solvestack-serializer-demo">&#182;</a></h3><ul>
+<ul>
 <li>Run solvestack server with <code>python manage.py runserver</code></li>
 <li>Show the admin site <a href="http://127.0.0.1:8000/admin/">here</a>, view the terms we have loaded</li>
 <li>Open Postman to make API requests and show serialization of data we just looked at: run a GET on <code>http://127.0.0.1:8000/terms/</code></li>
@@ -14450,7 +14402,7 @@ Deserializes our JSON input from our request body into the ORM equivalent for wr
 <h1 id="Django-vs-Django-REST">Django vs Django REST<a class="anchor-link" href="#Django-vs-Django-REST">&#182;</a></h1><p>What is the difference betweeen Django and Django REST?</p>
 <ul>
 <li>Django is used as the base for our backend code.  It provides the structure needed for the backend with supporting files such as <code>views.py</code>, <code>urls.py</code>, and <code>models.py</code></li>
-<li>Django REST adds useful abstractions that speed up things like authentication, serializing/deserializing, routing, etc</li>
+<li>Django REST adds useful abstractions that speed up things like authentication, serializing/deserializing, routing URLs, etc</li>
 </ul>
 
 </div>
@@ -14490,6 +14442,11 @@ pip3 install -r requirements.txt</code></pre>
 
 <pre><code>python3 manage.py migrate
 python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
+<h2 id="Loading-data-into-Django-REST-tutorial">Loading data into Django REST tutorial<a class="anchor-link" href="#Loading-data-into-Django-REST-tutorial">&#182;</a></h2><ul>
+<li>Navigate to the root of the project, and then type <code>cd django_rest/tutorial</code></li>
+<li>Type <code>python manage.py migrate</code></li>
+<li>Type <code>python manage.py createsuperuser</code> and use default options</li>
+</ul>
 <h2 id="Running-code">Running code<a class="anchor-link" href="#Running-code">&#182;</a></h2><p><code>python3 manage.py runserver</code></p>
 
 </div>
@@ -14592,8 +14549,8 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Demo-of-both-projects">Demo of both projects<a class="anchor-link" href="#Demo-of-both-projects">&#182;</a></h1><ul>
-<li>Show tutorial's hyperlinked interface through admin page</li>
-<li>Show solvestack with admin page added</li>
+<li>Show tutorial's hyperlinked interface through <a href="http://127.0.0.1:8000/snippets/">snippets</a> page</li>
+<li>Show solvestack with <a href="http://127.0.0.1:8000/admin/">admin</a> page added</li>
 </ul>
 
 </div>
@@ -14602,7 +14559,7 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Django-view-review">Django view review<a class="anchor-link" href="#Django-view-review">&#182;</a></h1><p>Before we dig into some neat things we can do with views in Django REST, let's review Django views real quick!</p>
 <ul>
-<li>A Django view is just a Python function that receives a web request and returns a web response</li>
+<li>A Django view is a Python function that receives a web request and returns a web response</li>
 <li>All the logic to return the desired response goes inside the view</li>
 <li>A general use case in Django would be:<ol>
 <li>Create application views</li>
@@ -14611,13 +14568,10 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </ol>
 </li>
 </ul>
-<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><p>Class-based views are great for grouping common behaviors.  They can be re-used easily within our project, and enforce a good programming practice known as <a href="https://en.wikipedia.org/wiki/Don&#39;t_repeat_yourself">DRY</a>.  These are provided with Django, however Django REST extends these with additional features, such as mixin classes.</p>
+<h1 id="Class-based-views">Class-based views<a class="anchor-link" href="#Class-based-views">&#182;</a></h1><p>Class-based views are great for grouping common behaviors.  They can be re-used easily within our project, and enforce a good programming practice known as <a href="https://en.wikipedia.org/wiki/Don&#39;t_repeat_yourself">DRY</a>.  These are provided with Django, however Django REST extends these with additional features, such as mixin classes.  These provide us with <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> solutions so we don't have to write them!</p>
 <h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand what features mixin classes provide</li>
 <li>Understand how classes can be refactored with already mixed-in generic class-based views</li>
-</ul>
-<h2 id="Activities">Activities<a class="anchor-link" href="#Activities">&#182;</a></h2><ul>
-<li>Mixins added classes in <code>snippets/views.py</code>:</li>
 </ul>
 
 </div>
@@ -14653,8 +14607,9 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>REST framework provides a set of already mixed-in generic views that we can use to trim down <code>views.py</code> more.</p>
-<p>Using already mixed-in generic class-based view from <code>snippets/views.py</code>:</p>
+<p>Mixin classes reduce the amount of code we write.  Here we're using <a href="https://www.django-rest-framework.org/api-guide/generic-views/#listmodelmixin">ListModelMixin</a> and  <a href="https://www.django-rest-framework.org/api-guide/generic-views/#createmodelmixin">CreateModelMixin</a>.</p>
+<p>REST framework provides a set of already mixed-in generic views that we can use to trim down <code>views.py</code> even more.</p>
+<p>If we wanted to use already mixed-in generic class-based view in <code>snippets/views.py</code>:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14666,7 +14621,6 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">snippets.models</span> <span class="kn">import</span> <span class="n">Snippet</span>
 <span class="kn">from</span> <span class="nn">snippets.serializers</span> <span class="kn">import</span> <span class="n">SnippetSerializer</span>
 <span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
-
 
 <span class="k">class</span> <span class="nc">SnippetList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">Snippet</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
@@ -14686,7 +14640,7 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Much less code is needed with already mixed-in generic class-based views when compared to creating a class and adding in mixins.</p>
-<blockquote><p>Note: Solvestack code from <code>glossary/views.py</code> uses a viewset, which we'll talk about later.</p>
+<blockquote><p>Note: Solvestack code from <code>glossary/views.py</code> uses a viewset, which we'll talk about later.  The final version of the tutorial from the Django REST site also uses viewsets.</p>
 </blockquote>
 
 </div>
@@ -14702,6 +14656,7 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 <li>Nesting the related entity inside the parent representation</li>
 <li>Some other custom representation</li>
 </ul>
+<p><a href="https://www.django-rest-framework.org/api-guide/serializers/">https://www.django-rest-framework.org/api-guide/serializers/</a></p>
 <h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>Understand differences between <code>ModelSerializer</code> and <code>HyperLinkedModelSerializer</code></li>
 <li>Show other relationship styles</li>
@@ -14914,7 +14869,8 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Viewset-Exercises">Viewset Exercises<a class="anchor-link" href="#Viewset-Exercises">&#182;</a></h1><p><a href="https://www.django-rest-framework.org/api-guide/viewsets/">https://www.django-rest-framework.org/api-guide/viewsets/</a></p>
+<h1 id="Viewsets">Viewsets<a class="anchor-link" href="#Viewsets">&#182;</a></h1><p><a href="https://www.django-rest-framework.org/api-guide/viewsets/">https://www.django-rest-framework.org/api-guide/viewsets/</a></p>
+<p>Viewsets are a great way of quickly creating common view actions and writing a minimal amount of code.  They also allow us to use routers to automatically generate our URLConf.</p>
 <h2 id="Goals">Goals<a class="anchor-link" href="#Goals">&#182;</a></h2><ul>
 <li>import statements (<code>viewsets</code>, <code>action</code>, <code>Response</code>)</li>
 <li>understand what actions <code>ReadOnlyModelViewSet</code> provides</li>
@@ -15076,6 +15032,11 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In the code above:</p>
+<ul>
+<li>Note how the url for our terms is registered with the router</li>
+<li>In our urlpatterns list, all urls registered with the router are added to our url paths</li>
+</ul>
 <h2 id="Other-viewset-types">Other viewset types<a class="anchor-link" href="#Other-viewset-types">&#182;</a></h2><ul>
 <li>GenericViewSet</li>
 <li>ModelViewSet</li>
@@ -15083,6 +15044,11 @@ python3 manage.py loaddata solvestack/fixtures/glossary.json</code></pre>
 </ul>
 <blockquote><p>Mixins can also be used to create custom viewset classes, using existing viewsets as a base</p>
 </blockquote>
+<h2 id="Activity---Adding-a-new-viewset-for-stacks">Activity - Adding a new viewset for stacks<a class="anchor-link" href="#Activity---Adding-a-new-viewset-for-stacks">&#182;</a></h2><p>Now we'll create a new viewset that represents a stack!</p>
+<ul>
+<li>cd into <code>solvestack_backend</code> folder</li>
+<li>checkout new branch in solvestack_backend folder <code>git checkout -b stack_node</code>.  Type <code>git status</code> to verify you are on the new branch.</li>
+</ul>
 <h2 id="Tradoffs-between-views-&amp;-viewsets">Tradoffs between views &amp; viewsets<a class="anchor-link" href="#Tradoffs-between-views-&amp;-viewsets">&#182;</a></h2><p>Viewsets are a really useful abstraction, and ensure that the URL conventions are consistent across your API, cuts down on the amount of code you need to write, and allows you to concentrate on the interactions and representations the API provides rather then the specifics in the URLConf.</p>
 <p>It's not always the right approach to take - there are tradeoffs to consider.  Using viewsets is less explicit than building each view individually.</p>
 

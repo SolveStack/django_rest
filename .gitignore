@@ -1,5 +1,6 @@
 # files
 *.sqlite3
+activities_instructor.*
 
 # folders
 __pycache__/
