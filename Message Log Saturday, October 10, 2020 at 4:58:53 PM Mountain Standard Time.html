@@ -1,0 +1,235 @@
+<html><head><style type="text/css"><meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+body 
+{
+    max-width: 100%; /* fix our max width to 100% of our containing frame */
+    word-wrap: break-word; /* ok to break words if text wrap is needed */
+    
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    
+    font-family: arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 100%;
+    
+    line-height: 2px;
+}
+
+.msg_entry 
+{
+    font-family: arial, sans-serif;
+	display: block;
+	font-size: 14px;
+
+    /* webkit extension for rounded boxes, ok if it doesn't work */
+	-webkit-border-radius: 8px;
+	
+	/* gecko extension for rounded boxes, ok if it doesn't work */
+	-moz-border-radius: 8px;
+	
+	/* CCS3 rounded boxes, ok if it doesn't work */
+	border-radius: 8px;
+}
+
+.msg_entry h1 
+{
+	/* webkit extension for rounded boxes, ok if it doesn't work */
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    
+    /* gecko extension for rounded boxes, ok if it doesn't work */
+    -moz-border-radius-bottomright: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    
+    /* CCS3 rounded boxes, ok if it doesn't work */
+    -border-bottom-right-radius: 0px;
+    -border-bottom-left-radius: 0px;
+
+    background-color: transparent;
+    
+    margin: 0px 0px;
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    line-height: 50%;
+}
+
+.msg_entry p 
+{
+	/* webkit extension for rounded boxes */
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+    
+    /* gecko extension for rounded boxes */
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-topleft: 0px;
+    
+    /* CCS3 rounded boxes */
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    margin: 0px 0px;
+    line-height: 100%;
+    word-wrap: break-word; /* ok to break words if text wrap is needed */
+}
+
+.msg_entry.chat.welcome, .msg_entry.chat.message
+{
+	background-color: rgb(217, 240, 211);   /* light green */
+	border-color: rgb(217, 240, 211);       /* light green */
+}
+
+.msg_entry.chat.welcome p, .msg_entry.chat.message p
+{
+    background-color: transparent;
+}
+
+.msg_entry.chat.incoming
+{
+    margin-left: 8px;
+    margin-right: 40px;
+}
+
+.msg_entry.chat.outgoing
+{
+    margin-left: 40px;
+    margin-right: 8px;
+}
+
+.msg_entry.chat.incoming, .msg_entry.chat.outgoing
+{
+	background-color: rgb(216, 237, 254);   /* light blue */
+	border-color: rgb(216, 237, 254);       /* light blue */
+}
+
+.msg_entry.chat.incoming h1, .msg_entry.chat.outgoing h1
+{
+	color: rgb(2, 101, 203);                /* blue */
+}
+
+.msg_entry.chat.incoming.to_all
+{
+	background-color: rgb(240, 242, 245);
+}
+
+.msg_entry.chat.outgoing.to_all
+{
+    background-color: rgb(254, 237, 222);
+}
+
+.msg_entry.chat.incoming.to_all h1, .msg_entry.chat.outgoing.to_all h1
+{
+	color: rgb(0, 102, 2);                  /* green */
+}
+
+.msg_entry.chat.incoming.private, .msg_entry.chat.outgoing.private 
+{
+	background-color: rgb(254, 226, 230);
+}
+
+.msg_entry.chat.incoming.private h1, .msg_entry.chat.outgoing.private h1 
+{
+	color: rgb(153, 1, 0);                  /* red */
+}
+
+.chat-header
+{
+    font-size: 12px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a.replyTo
+{
+    color: rgb(0, 106, 500);
+    cursor: pointer;
+}
+
+.outgoing .chat-header
+{
+    color: black;
+}
+
+.timestamp
+{
+    position: relative;
+    float: right;
+    text-align: right;
+    margin-left: 16px;
+    color: darkslategrey;
+    font-weight: normal;
+    font-size: 10px;
+}
+
+.privateDiv
+{
+    font-weight: normal;
+    color: rgb(224, 45, 82);
+    font-size: 14px;
+    padding: 6px 0px;
+}
+
+.privateFooterDiv
+{
+    font-weight: normal;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+hr
+{
+    margin-bottom: 10px;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(225, 186, 194);
+    padding: 0;
+}
+
+</style>
+</head><body><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:01 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700003);return false">gina aorahim</a> to Everyone</div></h1><p>you muted me</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:01 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700003);return false">gina aorahim</a> to Everyone</div></h1><p>then it unmuted me</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">1:02 PM</div>Me to Everyone</div></h1><p>yeah!  i can unmute anyone but don't hear antything</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:02 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700003);return false">gina aorahim</a> to Everyone</div></h1><p>i can hear you</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:04 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700005);return false">Caylee</a> to Everyone</div></h1><p>Okay, took me a sec as well- but now should have everything ready to hear and speak too.</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">1:05 PM</div>Me to Everyone</div></h1><p>Thanks!  I had my audio going to HDMI &gt;_&lt;</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:10 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700006);return false">Stanley Thepkaisone (Student)</a> to Everyone</div></h1><p>let me try to log out and lo-g in</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:10 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700003);return false">gina aorahim</a> to Everyone</div></h1><p>ok</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:10 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700005);return false">Caylee</a> to Everyone</div></h1><p>yeah it may be a permissions thing. Let us know if you continue having issues</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">1:16 PM</div>Me to Everyone</div></h1><p><a href="https://github.com/SolveStack/solvestack_backend">https://github.com/SolveStack/solvestack_backend</a></p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">1:16 PM</div>Me to Everyone</div></h1><p><a href="https://www.django-rest-framework.org">https://www.django-rest-framework.org</a></p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">1:17 PM</div>Me to Everyone</div></h1><p><a href="https://github.com/SolveStack/django_rest">https://github.com/SolveStack/django_rest</a></p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:47 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700008);return false">Stanley Thepkaisone (Student)</a> to Everyone</div></h1><p>where your database is stored?</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:56 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700008);return false">Stanley Thepkaisone (Student)</a> to Everyone</div></h1><p>structured query language</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">1:58 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700008);return false">Stanley Thepkaisone (Student)</a> to Everyone</div></h1><p>couldnt get my mic to work</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:22 PM</div>Me to Everyone</div></h1><p>return from break at 2:27!</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:27 PM</div>Me to Everyone</div></h1><p>Hello everyone!  Just coming back from break.  Will start up here in a few seconds</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:34 PM</div>Me to Everyone</div></h1><p>git clone <a href="https://github.com/SolveStack/solvestack_backend">https://github.com/SolveStack/solvestack_backend</a></p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:36 PM</div>Me to Everyone</div></h1><p>git clone <a href="https://github.com/SolveStack/django_rest">https://github.com/SolveStack/django_rest</a></p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:46 PM</div>Me to Everyone</div></h1><p>mkdir env</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:46 PM</div>Me to Everyone</div></h1><p>python3 -m venv &lt;folder path&gt;/env</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">2:46 PM</div>Me to Everyone</div></h1><p>source env/bin/activate</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">2:48 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>christinealbert: python-back-end
+<br>♥ ls
+<br>bin			include			solvestack_backend
+<br>django_rest		lib
+<br>env			pyvenv.cfg</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">2:51 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>python3 -m venv /Users/christinealbert/coding/python-back-end</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">3:06 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>Loading data into Django REST tutorial
+<br>
+<br>    Navigate to the root of the project, and then type cd django_rest/tutorial
+<br>    Type python manage.py migrate
+<br>    Type python manage.py createsuperuser and use default options</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">3:08 PM</div>Me to Everyone</div></h1><p>cd django_rest/tutorial</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">3:08 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>File "/Users/christinealbert/Coding/Python-back-end/django_rest/tutorial/snippets/models.py", line 2, in &lt;module&gt;
+<br>    from pygments.lexers import get_all_lexers
+<br>ModuleNotFoundError: No module named 'pygments'</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">3:10 PM</div>Me to Everyone</div></h1><p>pip install pygments</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">3:14 PM</div>Me to Everyone</div></h1><p>python manage.py createsuperuser</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">3:19 PM</div>Me to Everyone</div></h1><p>class TermSerializer(serializers.ModelSerializer):
+<br>    class Meta:
+<br>        model = Term
+<br>        fields = ["id", "name", "definition"]
+<br>        read_only_fields = ["id"]</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:08 PM</div>Me to Everyone</div></h1><p>git checkout -b django_rest</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:09 PM</div>Me to Everyone</div></h1><p>git status</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:12 PM</div>Me to Everyone</div></h1><p>(make sure you are in solvestack_backend folder)</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:20 PM</div>Me to Everyone</div></h1><p>while in new branch, make changes to file</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:20 PM</div>Me to Everyone</div></h1><p>git add .</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:20 PM</div>Me to Everyone</div></h1><p>(make sure you are in solvestack_backend folder)</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:20 PM</div>Me to Everyone</div></h1><p>git status</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:22 PM</div>Me to Everyone</div></h1><p>git commit -m "added line for git demo"</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:22 PM</div>Me to Everyone</div></h1><p>git checkout master</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:24 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700005);return false">Caylee</a> to Everyone</div></h1><p>yes we can hear you</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:37 PM</div>Me to Everyone</div></h1><p>from .models import Term, StackNode
+<br>admin.site.register(Term)
+<br>admin.site.register(StackNode)</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:40 PM</div>Me to Everyone</div></h1><p>python manage.py makemigrations</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:40 PM</div>Me to Everyone</div></h1><p>python manage.py migrate</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:48 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>TemplateDoesNotExist at /
+
+rest_framework/api.html
+
+Request Method: 	GET
+Request URL: 	<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:49 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>File "/Users/christinealbert/.pyenv/versions/3.7.5/lib/python3.7/site-packages/django/core/handlers/exception.py", line 47, in inner
+<br>    response = get_response(request)
+<br>  File "/Users/christinealbert/.pyenv/versions/3.7.5/lib/python3.7/site-packages/django/core/handlers/base.py", line 202, in _get_response</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:50 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700007);return false">Christine Albert</a> to Everyone</div></h1><p>from rest_framework import viewsets
+<br>
+<br>from .serializers import TermSerializer, StackNodeSerializer
+<br>from .models import Term, StackNode
+<br>from .filters import TermsFilter
+<br>
+<br>
+<br>class TermViewSet(viewsets.ModelViewSet):
+<br>    queryset = Term.objects.all()
+<br>    serializer_class = TermSerializer
+<br>    filter_class = TermsFilter
+<br>
+<br>class StackNodeViewSet(viewsets.ModelViewSet):
+<br>    queryset = StackNode.objects.all()
+<br>    serializer_class = StackNodeSerializer
+<br>    # filter_class = TermsFilter</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:53 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700003);return false">gina aorahim</a> to Everyone</div></h1><p>im going to head out, byee :D</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:53 PM</div>Me to Everyone</div></h1><p>Bye Gina!</p></div><br><div class="msg_entry chat incoming to_all"><h1><div class="chat-header"><div class="timestamp">4:54 PM</div><a class="replyTo" onclick="g2m_app.replyTo(700008);return false">Stanley Thepkaisone (Student)</a> to Everyone</div></h1><p>Thanks for the tutorial. It's been fun!</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:54 PM</div>Me to Everyone</div></h1><p>Thanks Stanley!</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:55 PM</div>Me to Everyone</div></h1><p>python manage.py makemigrations</p></div><br><div class="msg_entry chat outgoing to_all"><h1><div class="chat-header"><div class="timestamp">4:55 PM</div>Me to Everyone</div></h1><p>python manage.py migrate</p></div></body></html>
